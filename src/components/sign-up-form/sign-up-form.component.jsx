@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState} from "react";
 
 import { createAuthUserWithEmailAndPassword,
         createUserDocumentFromAuth,
@@ -8,8 +8,6 @@ import { createAuthUserWithEmailAndPassword,
  import Button from "../button/button.component";
 
  import './sign-up-form.styles.scss';
-
- 
 
 const defaultFormFields = {
     displayName: '',
@@ -38,8 +36,9 @@ const SignUpForm = () => {
         //continue if password match and create new user
         try {
             const {user} = await createAuthUserWithEmailAndPassword(email, password);
-            //console.log(user);
+
             await createUserDocumentFromAuth(user, {displayName});
+            //setCurrentUser(user);
             resetFields();
         }catch (error) {
             if(error.code === 'auth/email-already-in-use'){

@@ -1,11 +1,9 @@
 //import react components
-import { useState } from "react";
+import { useState} from "react";
 
 //import fireston util
 import { 
-    auth,
     signInWithGooglePopup, 
-    createUserDocumentFromAuth, 
     signInAuthUserWithEmailAndPassword,
 } from '../../utils/firebase/firebase.utils';
 
@@ -15,6 +13,7 @@ import Button from '../button/button.component';
 
 //scss
 import './sign-in-form.scss';
+
 
 const defaultFormFields = {
     email: '',
@@ -28,15 +27,18 @@ const SignInForm = () => {
     const { email, password} = formFields;
 
     const resetFormFields = () => {
-        setFormFields(defaultFormFields)
+        setFormFields(defaultFormFields);
     }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         try {
-            const response = await signInAuthUserWithEmailAndPassword(email, password);
-            console.log(response);
+            await signInAuthUserWithEmailAndPassword(
+                email, 
+                password,
+            );
+           
             resetFormFields();
         } catch (error){
             switch (error.code) {
@@ -59,8 +61,8 @@ const SignInForm = () => {
     }
 
     const signInWithGoogle = async () => {
-        const { user } = await signInWithGooglePopup();
-        await createUserDocumentFromAuth(user);
+        signInWithGooglePopup();
+
     };
 
     return (
