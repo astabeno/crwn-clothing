@@ -7,12 +7,10 @@ import Button from '../button/button.component'
 
 const ProductCard = ({product}) => {
 
-    const { imageUrl, name, price } = product;
-    //const { isCartOpen, setCart } = useContext(CartContext);
+    const {  name, price, imageUrl } = product;
+    const { addItemToCart } = useContext(CartContext)
 
-    const addItem = () => {
-        
-    }
+    const addProductToCart = () => addItemToCart(product)
 
     return (
     <div className="product-card-container">
@@ -21,7 +19,7 @@ const ProductCard = ({product}) => {
             <span className='name'>{name}</span>
             <span className='price'>{price}</span>
         </div>
-        <Button buttonType='inverted' onClick={addItem} >Add to Cart</Button>
+        <Button buttonType='inverted' onClick={addProductToCart} >Add to Cart</Button>
     </div>
     )
 }
