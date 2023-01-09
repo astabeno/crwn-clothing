@@ -7,7 +7,7 @@ import { createAuthUserWithEmailAndPassword,
  import FormInput from "../form-input/form-input.component";
  import Button from "../button/button.component";
 
- import './sign-up-form.styles.scss';
+ import { SignUpContainer } from './sign-up-form.styles';
 
 const defaultFormFields = {
     displayName: '',
@@ -46,19 +46,16 @@ const SignUpForm = () => {
             }else{
                 console.log('error creating user', error);
             }
-            
         }
-
     }
 
     const handleChange = (event) => {
         const { name, value } = event.target;
-
         setFormFields({...formFields, [name]: value })
     }
 
     return (
-        <div className="sign-up-container">
+        <SignUpContainer>
             <h2>Don't Have an Account</h2>
             <span>Sign Up with your email and password</span>
             <form onSubmit={handleSubmit}>
@@ -70,7 +67,6 @@ const SignUpForm = () => {
                     name="displayName" 
                     value={displayName} 
                 />
-
                 <FormInput
                     label="Email"
                     type="email" 
@@ -79,7 +75,6 @@ const SignUpForm = () => {
                     name="email"
                     value={email}
                 />
-
                 <FormInput 
                     label="Password"
                     type="password" 
@@ -87,8 +82,7 @@ const SignUpForm = () => {
                     onChange={handleChange} 
                     name="password"
                     value={password}
-                />
-                
+                />  
                 <FormInput 
                     label="Confirm Password"
                     type="password" 
@@ -98,9 +92,8 @@ const SignUpForm = () => {
                     value={confirmPassword}
                 />
                 <Button type='submit'>SIGN UP!</Button>
-
             </form>
-        </div>
+        </SignUpContainer>
     )
 }
 
